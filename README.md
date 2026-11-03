@@ -17,6 +17,13 @@ The **lock** button in any chat turns on Private mode, which keeps that chat on 
    - paste a free Gemini key from aistudio.google.com (Get API key);
    - under On-device model, choose E4B (or E2B) and tap Download, on Wi-Fi.
 
+## Get the APK without a computer
+
+Every push to `main` builds the APK on GitHub (Actions tab, workflow "Build APK").
+When it finishes, open **Releases** on the repository page on your phone, download the
+`.apk` from the latest release and open it to install. You can also start a build by hand:
+Actions > Build APK > Run workflow.
+
 ## Where to change things
 
 - Scope and drafting rules: `LegalPrompt.kt`
