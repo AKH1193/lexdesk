@@ -50,6 +50,8 @@ jobs:
           VERSION=$(grep -oP 'versionName = "\K[^"]+' app/build.gradle.kts)
           NAME="LexDesk-v${VERSION}-build${GITHUB_RUN_NUMBER}.apk"
           cp app/build/outputs/apk/release/app-release.apk "$NAME"
+          # Fixed name too, so releases/latest/download/LexDesk.apk always gets the newest build.
+          cp app/build/outputs/apk/release/app-release.apk LexDesk.apk
           echo "name=$NAME" >> "$GITHUB_OUTPUT"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
@@ -67,7 +69,9 @@ jobs:
           name: LexDesk v${{ steps.apk.outputs.version }} (build ${{ github.run_number }})
           target_commitish: ${{ github.sha }}
           make_latest: true
-          files: ${{ steps.apk.outputs.name }}
+          files: |
+            LexDesk.apk
+            ${{ steps.apk.outputs.name }}
           body: |
             Download the .apk below on your phone and open it to install.
             Built from commit ${{ github.sha }}.
